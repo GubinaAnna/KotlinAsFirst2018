@@ -109,7 +109,7 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
     val b = hoursDepart * 60 + minutesDepart
     return a - b
 }
-/**
+/*
  * Простая
  *
  * Человек положил в банк сумму в s рублей под p% годовых (проценты начисляются в конце года).
