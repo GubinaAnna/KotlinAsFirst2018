@@ -118,7 +118,7 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  */
 fun accountInThreeYears(initial: Int, percent: Int): Int = initial * (percent / 100 + 1) *(percent / 100 + 1) * (percent / 100 + 1)
 /**
- * Простая
+ * Простaя
  *
  * Пользователь задает целое трехзначное число (например, 478).
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
