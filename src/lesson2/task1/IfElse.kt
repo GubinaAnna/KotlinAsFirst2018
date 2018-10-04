@@ -133,11 +133,12 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double) =
-    if (sqr(a) + sqr(b) > sqr(c) || sqr(b) + sqr(c) > sqr(a) || sqr(a) + sqr(c) > sqr(b)) 0 else
-    if (sqr(a) + sqr(b) == sqr(c) || sqr(b) + sqr(c) == sqr(a) || sqr(a) + sqr(c) == sqr(b)) 1 else
-    if (sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(a) + sqr(c) < sqr(b)) 2 else -1
-
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    if ((a + b < c) || (b + c < a) || (a + c < b)) return -1
+    if (sqr(a) + sqr(b) == sqr(c) || sqr(b) + sqr(c) == sqr(a) || sqr(a) + sqr(c) == sqr(b)) return 1
+    if (sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(a) + sqr(c) < sqr(b)) return 2
+    else return 0
+}
 
 /**
  * Средняя
@@ -152,4 +153,3 @@ fun segmentLength(a: Int, b: Int, c: Int, d: Int) =
     if (c <= b && b <= d && a < c) b - c else
     if (c <= a && b <= d) b - a else
     if (a > d || b < c) -1 else d - a
-
