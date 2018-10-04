@@ -100,12 +100,10 @@ fun timeForHalfWay(t1: Double, v1: Double,
  */
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
-                       rookX2: Int, rookY2: Int): Int {
-    if ((kingX != rookX1 && kingX != rookX2) && (kingY != rookY1 && kingY != rookY2)) return 0
-    if ((kingX == rookX1 || kingY == rookY1) && (kingX != rookX2 && kingY != rookY2)) return 1
-    if ((kingX == rookX2 || kingY == rookY2) && (kingX != rookX1 && kingY != rookY1)) return 2
-    else return 3
-}
+                       rookX2: Int, rookY2: Int) =
+    if ((kingX != rookX1 && kingX != rookX2) && (kingY != rookY1 && kingY != rookY2)) 0 else
+    if ((kingX == rookX1 || kingY == rookY1) && (kingX != rookX2 && kingY != rookY2)) 1 else
+    if ((kingX == rookX2 || kingY == rookY2) && (kingX != rookX1 && kingY != rookY1)) 2 else 3
 
 /**
  * Простая
@@ -119,13 +117,13 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  */
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int {
-    if (kingX != rookX && kingY != rookY && (bishopX - bishopY != kingX - kingY) && (bishopX + bishopY != kingX + kingY)) return 0
-    if (kingX == rookX || kingY == rookY && (bishopX - bishopY != kingX - kingY) && (bishopX + bishopY != kingX + kingY)) return 1
-    if (kingX != rookX && kingY != rookY && (bishopX - bishopY == kingX - kingY) || (bishopX + bishopY == kingX + kingY)) return 2
-    else return 3
-
-}
+                          bishopX: Int, bishopY: Int) =
+    if (kingX != rookX && kingY != rookY && (bishopX - bishopY != kingX - kingY) &&
+            (bishopX + bishopY != kingX + kingY)) 0 else
+    if (kingX == rookX || kingY == rookY && (bishopX - bishopY != kingX - kingY) &&
+            (bishopX + bishopY != kingX + kingY)) 1 else
+    if (kingX != rookX && kingY != rookY && (bishopX - bishopY == kingX - kingY) ||
+            (bishopX + bishopY == kingX + kingY)) 2 else 3
 
 /**
  * Простая
@@ -135,12 +133,10 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int {
-    if (sqr(a) + sqr(b) > sqr(c) || sqr(b) + sqr(c) > sqr(a) || sqr(a) + sqr(c) > sqr(b)) return 0
-    if (sqr(a) + sqr(b) == sqr(c) || sqr(b) + sqr(c) == sqr(a) || sqr(a) + sqr(c) == sqr(b)) return 1
-    if (sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(a) + sqr(c) < sqr(b)) return 2
-    else return -1
-}
+fun triangleKind(a: Double, b: Double, c: Double) =
+    if (sqr(a) + sqr(b) > sqr(c) || sqr(b) + sqr(c) > sqr(a) || sqr(a) + sqr(c) > sqr(b)) 0 else
+    if (sqr(a) + sqr(b) == sqr(c) || sqr(b) + sqr(c) == sqr(a) || sqr(a) + sqr(c) == sqr(b)) 1 else
+    if (sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(a) + sqr(c) < sqr(b)) 2 else -1
 
 
 /**
@@ -151,11 +147,9 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-    if (a <= d && d <= b && a <= c) return d - c
-    if (c <= b && b <= d && a < c) return b - c
-    if (c <= a && b <= d) return b - a
-    if (a > d || b < c) return -1
-    else return d - a
-}
+fun segmentLength(a: Int, b: Int, c: Int, d: Int) =
+    if (a <= d && d <= b && a <= c) d - c else
+    if (c <= b && b <= d && a < c) b - c else
+    if (c <= a && b <= d) b - a else
+    if (a > d || b < c) -1 else d - a
 
