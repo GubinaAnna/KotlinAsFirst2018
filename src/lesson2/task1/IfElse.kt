@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
 
 import lesson1.task1.discriminant
@@ -87,8 +88,6 @@ fun timeForHalfWay(t1: Double, v1: Double,
 }
 
 
-
-
 /**
  * Простая
  *
@@ -101,9 +100,9 @@ fun timeForHalfWay(t1: Double, v1: Double,
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int) =
-    if ((kingX != rookX1 && kingX != rookX2) && (kingY != rookY1 && kingY != rookY2)) 0 else
-    if ((kingX == rookX1 || kingY == rookY1) && (kingX != rookX2 && kingY != rookY2)) 1 else
-    if ((kingX == rookX2 || kingY == rookY2) && (kingX != rookX1 && kingY != rookY1)) 2 else 3
+        if ((kingX != rookX1 && kingX != rookX2) && (kingY != rookY1 && kingY != rookY2)) 0 else
+            if ((kingX == rookX1 || kingY == rookY1) && (kingX != rookX2 && kingY != rookY2)) 1 else
+                if ((kingX == rookX2 || kingY == rookY2) && (kingX != rookX1 && kingY != rookY1)) 2 else 3
 
 /**
  * Простая
@@ -118,12 +117,10 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
                           bishopX: Int, bishopY: Int) =
-    if (kingX != rookX && kingY != rookY && (bishopX - bishopY != kingX - kingY) &&
-            (bishopX + bishopY != kingX + kingY)) 0 else
-    if (kingX == rookX || kingY == rookY && (bishopX - bishopY != kingX - kingY) &&
-            (bishopX + bishopY != kingX + kingY)) 1 else
-    if (kingX != rookX && kingY != rookY && (bishopX - bishopY == kingX - kingY) ||
-            (bishopX + bishopY == kingX + kingY)) 2 else 3
+        if ((kingX == rookX || kingY == rookY) && (bishopX + bishopY == kingX + kingY || bishopX - bishopY == kingX - kingY)) 3 else
+            if (kingX == rookX || kingY == rookY && (bishopX + bishopY != kingX + kingY)) 1 else
+                if (kingX != rookX && kingY != rookY && (bishopX - bishopY == kingX - kingY) ||
+                        (bishopX + bishopY == kingX + kingY)) 2 else 0
 
 /**
  * Простая
@@ -149,7 +146,7 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Если пересечения нет, вернуть -1
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int) =
-    if (a <= d && d <= b && a <= c) d - c else
-    if (c <= b && b <= d && a < c) b - c else
-    if (c <= a && b <= d) b - a else
-    if (a > d || b < c) -1 else d - a
+        if (a <= d && d <= b && a <= c) d - c else
+            if (c <= b && b <= d && a < c) b - c else
+                if (c <= a && b <= d) b - a else
+                    if (a > d || b < c) -1 else d - a
