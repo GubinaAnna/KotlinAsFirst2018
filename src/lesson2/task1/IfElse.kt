@@ -117,7 +117,8 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
                           bishopX: Int, bishopY: Int) =
-        if ((kingX == rookX || kingY == rookY) && (bishopX + bishopY == kingX + kingY || bishopX - bishopY == kingX - kingY)) 3 else
+        if ((kingX == rookX || kingY == rookY) && (bishopX + bishopY == kingX + kingY
+                        || bishopX - bishopY == kingX - kingY)) 3 else
             if (kingX == rookX || kingY == rookY && (bishopX + bishopY != kingX + kingY)) 1 else
                 if (kingX != rookX && kingY != rookY && (bishopX - bishopY == kingX - kingY) ||
                         (bishopX + bishopY == kingX + kingY)) 2 else 0
@@ -131,10 +132,10 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    if ((a + b < c) || (b + c < a) || (a + c < b)) return -1
+    if ((a + b <= c) || (b + c <= a) || (a + c <= b)) return -1
     if (sqr(a) + sqr(b) == sqr(c) || sqr(b) + sqr(c) == sqr(a) || sqr(a) + sqr(c) == sqr(b)) return 1
-    if (sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(a) + sqr(c) < sqr(b)) return 2
-    else return 0
+    return if (sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(a) + sqr(c) < sqr(b)) 2
+    else 0
 }
 
 /**
@@ -145,8 +146,9 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int) =
-        if (a <= d && d <= b && a <= c) d - c else
-            if (c <= b && b <= d && a < c) b - c else
-                if (c <= a && b <= d) b - a else
-                    if (a > d || b < c) -1 else d - a
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    val x = maxOf(a, c)
+    val y = minOf(b, d)
+    return if (x <= y) y - x else -1
+}
+
