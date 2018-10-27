@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson3.task1
 
 import lesson1.task1.sqr
@@ -41,7 +42,7 @@ fun isPrime(n: Int): Boolean {
  */
 fun isPerfect(n: Int): Boolean {
     var sum = 1
-    for (m in 2..n/2) {
+    for (m in 2..n / 2) {
         if (n % m > 0) continue
         sum += m
         if (sum > n) break
@@ -69,7 +70,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int  {
+fun digitNumber(n: Int): Int {
     var count = 0
     var number = abs(n)
     do {
@@ -98,8 +99,6 @@ fun fib(n: Int): Int {
     }
     return c
 }
-
-
 
 
 /**
@@ -162,7 +161,7 @@ fun collatzSteps(x: Int): Int {
     var count = 0
     var a = x
     while (a != 1) {
-        count ++
+        count++
         if ((a % 2) == 0) a /= 2
         else a = 3 * a + 1
     }
@@ -236,7 +235,6 @@ fun hasDifferentDigits(n: Int): Boolean {
 }
 
 
-
 /**
  * Сложная
  *
@@ -255,14 +253,13 @@ fun squareSequenceDigit(n: Int): Int {
         a += 1
         k += digitNumber(sqr(a))
     }
-    for (g in 1..k - n) b *= 10
+    for (i in 1..k - n) b *= 10
     val m = a * a / b % 10
     return m
 }
 
 
-
-    /**
+/**
  * Сложная
  *
  * Найти n-ю цифру последовательности из чисел Фибоначчи (см. функцию fib выше):
@@ -279,7 +276,7 @@ fun fibSequenceDigit(n: Int): Int {
         a += 1
         k += digitNumber(fib(a))
     }
-    for (g in 1..k - n) b *= 10
+    for (i in 1..k - n) b *= 10
     val m = fib(a) / b % 10
     return m
 }
