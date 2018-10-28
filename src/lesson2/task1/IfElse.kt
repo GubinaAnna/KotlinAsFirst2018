@@ -132,11 +132,17 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    if ((a + b <= c) || (b + c <= a) || (a + c <= b)) return -1
-    if (sqr(a) + sqr(b) == sqr(c) || sqr(b) + sqr(c) == sqr(a) || sqr(a) + sqr(c) == sqr(b)) return 1
-    return if (sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(a) + sqr(c) < sqr(b)) 2
-    else 0
+    val x = minOf(a, b, c)
+    val y = maxOf(a, b, c)
+    val z = a + b + c - x - y
+    return when {
+        x + z <= y -> -1
+        sqr(x) + sqr(z) == sqr(y) -> 1
+        sqr(x) + sqr(z) < sqr(y) -> 2
+        else -> 0
+    }
 }
+
 
 /**
  * Средняя
