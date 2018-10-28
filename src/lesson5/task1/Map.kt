@@ -94,7 +94,17 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *     mapOf("Emergency" to "911", "Police" to "02")
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
-fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> = TODO()
+fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
+    val mapC = (mapB + mapA).toMutableMap()
+    for ((key, value) in mapB) {
+        val a = mapA[key]
+        if (a != null && value != a)
+            mapC[key] = "$a, $value"
+    }
+    return mapC
+
+}
+
 
 /**
  * Простая
@@ -196,7 +206,7 @@ fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>): Unit = TO
  *
  * Для двух списков людей найти людей, встречающихся в обоих списках
  */
-fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = TODO()
+fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.filter { b.contains(it) }
 
 /**
  * Средняя
@@ -221,7 +231,12 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
  * Например:
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
-fun extractRepeats(list: List<String>): Map<String, Int> = TODO()
+fun extractRepeats(list: List<String>): Map<String, Int> {
+    val sum = mutableMapOf<String, Int>()
+    for (i in list) sum[i] = (sum[i] ?: 0) + 1
+    sum.values.removeIf { it == 1 }
+    return sum
+}
 
 /**
  * Средняя
@@ -232,7 +247,12 @@ fun extractRepeats(list: List<String>): Map<String, Int> = TODO()
  * Например:
  *   hasAnagrams(listOf("тор", "свет", "рот")) -> true
  */
-fun hasAnagrams(words: List<String>): Boolean = TODO()
+fun hasAnagrams(words: List<String>): Boolean {
+    for (i in 0 until words.size)
+        for (j in i + 1 until words.size)
+            if (words[i].toList().sorted() == words[j].toList().sorted()) return true
+    return false
+}
 
 /**
  * Сложная
