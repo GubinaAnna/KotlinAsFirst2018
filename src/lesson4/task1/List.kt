@@ -129,10 +129,9 @@ fun abs(v: List<Double>): Double {
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double {
-    if (list.isEmpty()) return 0.0
-    return list.sum() / list.size
-}
+fun mean(list: List<Double>): Double =
+        if (list.isEmpty()) 0.0
+        else list.sum() / list.size
 
 /**
  * Средняя
@@ -143,7 +142,7 @@ fun mean(list: List<Double>): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-    var s = mean(list)
+    val s = mean(list)
     for (i in 0 until list.size)
         list[i] -= s
     return list
@@ -251,15 +250,15 @@ fun convert(n: Int, base: Int): List<Int> {
 fun convertToString(n: Int, base: Int): String {
     val convert1 = convert(n, base)
     val letters = "abcdefghijklmnopqrstuvwxyz"
-    var result = ""
+    val result = StringBuilder()
     for (element in convert1) {
         if (element < 10) {
-            result += element
+            result.append(element)
         } else {
-            result += letters[element - 10]
+            result.append(letters[element - 10])
         }
     }
-    return result
+    return result.toString()
 }
 
 /**
