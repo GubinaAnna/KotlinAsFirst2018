@@ -156,12 +156,11 @@ fun bestHighJump(jumps: String): Int {
         for (i in 1 until parts.size step 2) {
             if (parts[i].toInt() > max && parts[i + 1] == "+")
                 max = parts[i].toInt()
-            if (max == 0) -1
         }
     } catch (e: NumberFormatException) {
         return -1
     }
-    return max
+    return if (max == 0) -1 else max
 }
 
 /**
