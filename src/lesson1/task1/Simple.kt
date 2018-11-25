@@ -80,6 +80,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double =
 fun angleInRadian(grad: Int, min: Int, sec: Int): Double =
         (grad * PI / 180) + (min * PI / (180 * 60)) + (sec * PI / (180 * 60 * 60))
 
+
 /**
  * Тривиальная
  *
