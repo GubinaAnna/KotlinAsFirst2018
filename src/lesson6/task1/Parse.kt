@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import lesson2.task2.daysInMonth
+
 /**
  * Пример
  *
@@ -49,12 +51,10 @@ fun main(args: Array<String>) {
         val seconds = timeStrToSeconds(line)
         if (seconds == -1) {
             println("Введённая строка $line не соответствует формату ЧЧ:ММ:СС")
-        }
-        else {
+        } else {
             println("Прошло секунд с начала суток: $seconds")
         }
-    }
-    else {
+    } else {
         println("Достигнут <конец файла> в процессе чтения строки. Программа прервана")
     }
 }
@@ -71,7 +71,22 @@ fun main(args: Array<String>) {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String {
+    val parts = str.split(" ").toMutableList()
+    val months = mapOf("января" to 1, "февраля" to 2, "марта" to 3, "апреля" to 4, "мая" to 5, "июня" to 6,
+            "июля" to 7, "августа" to 8, "сентября" to 9, "октября" to 10, "ноября" to 11, "декабря" to 12)
+    return try {
+        if (parts.size != 3) return ""
+        parts[1] = months[parts[1]].toString()
+        if (parts[1] == "0") return ""
+        if (parts[0].toInt() > daysInMonth(parts[1].toInt(), parts[2].toInt())) return ""
+        String.format("%02d.%02d.%s", parts[0].toInt(), parts[1].toInt(), parts[2])
+    } catch (e: Exception) {
+        ""
+
+    }
+}
+
 
 /**
  * Средняя
@@ -83,7 +98,20 @@ fun dateStrToDigit(str: String): String = TODO()
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30 февраля 2009) считается неверными
  * входными данными.
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    val parts = digital.split(".").toMutableList()
+    val a = listOf("января" to 1, "февраля" to 2, "марта" to 3, "апреля" to 4, "мая" to 5, "июня" to 6,
+            "июля" to 7, "августа" to 8, "сентября" to 9, "октября" to 10, "ноября" to 11, "декабря" to 12)
+    return try {
+        if (parts.size != 3) return ""
+        val months = a[parts[1].toInt() - 1]
+        if (parts[0].toInt() > daysInMonth(parts[1].toInt(), parts[2].toInt())) return ""
+        String.format("%d %s %d", parts[0].toInt(), months, parts[2].toInt())
+    } catch (e: Exception) {
+        ""
+    }
+}
+
 
 /**
  * Средняя
@@ -121,7 +149,20 @@ fun bestLongJump(jumps: String): Int = TODO()
  * Прочитать строку и вернуть максимальную взятую высоту (230 в примере).
  * При нарушении формата входной строки вернуть -1.
  */
-fun bestHighJump(jumps: String): Int = TODO()
+fun bestHighJump(jumps: String): Int {
+    val parts = jumps.split(" ")
+    var max = 0
+    try {
+        for (i in 1 until parts.size step 2) {
+            if (parts[i].toInt() > max && parts[i + 1] == "+")
+                max = parts[i].toInt()
+            if (max == 0) -1
+        }
+    } catch (e: NumberFormatException) {
+        return -1
+    }
+    return max
+}
 
 /**
  * Сложная
@@ -143,7 +184,15 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+fun firstDuplicateIndex(str: String): Int {
+    val parts = str.split(" ")
+    var j = 0
+    for (i in 0 until parts.size - 1)
+        if (parts[i].toLowerCase() == parts[i + 1].toLowerCase())
+            return j
+        else j += parts[i].length + 1
+    return -1
+}
 
 /**
  * Сложная
