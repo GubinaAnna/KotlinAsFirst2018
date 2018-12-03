@@ -250,10 +250,10 @@ fun extractRepeats(list: List<String>): Map<String, Int> {
 fun hasAnagrams(words: List<String>): Boolean {
     val list = mutableListOf<List<Char>>()
     for (i in 0 until words.size)
-        list[i] = words[i].toList().sorted()
-    for (i in 0 until list.size)
+        list.add(words[i].toList())
+    for (i in 0 until list.size - 1)
         for (j in i + 1 until list.size)
-            if (list[i] == list[j]) return true
+            if (list[i].containsAll(list[j])) return true
     return false
 }
 

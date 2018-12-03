@@ -104,7 +104,7 @@ fun dateDigitToStr(digital: String): String {
             "июля" to 7, "августа" to 8, "сентября" to 9, "октября" to 10, "ноября" to 11, "декабря" to 12)
     return try {
         if (parts.size != 3) return ""
-        val months = a[parts[1].toInt() - 1]
+        val months = a[parts[1].toInt() - 1].first
         if (parts[0].toInt() > daysInMonth(parts[1].toInt(), parts[2].toInt())) return ""
         String.format("%d %s %d", parts[0].toInt(), months, parts[2].toInt())
     } catch (e: Exception) {
@@ -150,11 +150,11 @@ fun bestLongJump(jumps: String): Int = TODO()
  * При нарушении формата входной строки вернуть -1.
  */
 fun bestHighJump(jumps: String): Int {
-    val parts = jumps.split(" ")
+    val parts = jumps.split(" ").toMutableList()
     var max = 0
     try {
-        for (i in 1 until parts.size step 2) {
-            if (parts[i].toInt() > max && parts[i + 1] == "+")
+        for (i in 0 until parts.size step 2) {
+            if (parts[i].toInt() > max && parts[i + 1].contains("+"))
                 max = parts[i].toInt()
         }
     } catch (e: NumberFormatException) {
