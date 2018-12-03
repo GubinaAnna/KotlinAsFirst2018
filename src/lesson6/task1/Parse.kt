@@ -151,7 +151,7 @@ fun bestLongJump(jumps: String): Int = TODO()
  */
 fun bestHighJump(jumps: String): Int {
     val parts = jumps.split(" ").toMutableList()
-    var max = 0
+    var max = -1
     try {
         for (i in 0 until parts.size step 2) {
             if (parts[i].toInt() > max && parts[i + 1].contains("+"))

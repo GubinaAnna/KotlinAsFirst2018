@@ -254,7 +254,7 @@ fun hasAnagrams(words: List<String>): Boolean {
             list.add(words[i].toList())
     for (i in 0 until list.size - 1)
         for (j in i + 1 until list.size)
-            if (list[i].containsAll(list[j])) return true
+            if (list[i].containsAll(list[j]) && list[j].containsAll(list[i])) return true
     return false
 }
 
