@@ -116,6 +116,7 @@ fun lcm(m: Int, n: Int): Int = TODO()
  */
 fun minDivisor(n: Int): Int = TODO()
 
+
 /**
  * Простая
  *
