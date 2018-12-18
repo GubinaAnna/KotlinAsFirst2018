@@ -223,14 +223,15 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
             .filter { it.length == it.toLowerCase().toList().distinct().size }
     val max = differentLetterWords.maxBy { it.length }!!.length
     val list = differentLetterWords.filter { it.length == max }
-    if (list.size == 1) File(outputName).writeText(list[0])
-    if (list.size > 1) {
+    if (list.isNotEmpty()) {
         val outputStream = File(outputName).bufferedWriter()
         outputStream.write(list[0])
-        for (i in 1 until list.size)
-            outputStream.write(", " + list[i])
-        outputStream.close()
-    }
+        if (list.size > 1) {
+            for (i in 1 until list.size)
+                outputStream.write(", " + list[i])
+            outputStream.close()
+        }
+    } else File(outputName).writeText("")
 }
 
 /**

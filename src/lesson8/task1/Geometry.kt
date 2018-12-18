@@ -115,7 +115,7 @@ fun diameter(vararg points: Point): Segment = TODO()
 fun circleByDiameter(diameter: Segment): Circle =
         Circle(Point(((max(diameter.end.x, diameter.begin.x) -
                 min(diameter.end.x, diameter.begin.x)) / 2),
-                ((max(diameter.end.y, diameter.begin.y) - min(diameter.end.x, diameter.begin.y)) / 2))
+                ((max(diameter.end.y, diameter.begin.y) - min(diameter.end.y, diameter.begin.y)) / 2))
                 , diameter.length / 2)
 
 /**
@@ -155,8 +155,7 @@ class Line private constructor(val b: Double, val angle: Double) {
  *
  * Построить прямую по отрезку
  */
-fun lineBySegment(s: Segment): Line =
-        Line(s.begin, asin((max(s.end.y, s.begin.y) - min(s.end.y, s.begin.y)) / s.length))
+fun lineBySegment(s: Segment): Line = TODO()
 
 
 /**
