@@ -112,11 +112,8 @@ fun diameter(vararg points: Point): Segment = TODO()
  * Построить окружность по её диаметру, заданному двумя точками
  * Центр её должен находиться посередине между точками, а радиус составлять половину расстояния между ними
  */
-fun circleByDiameter(diameter: Segment): Circle =
-        Circle(Point(((max(diameter.end.x, diameter.begin.x) -
-                min(diameter.end.x, diameter.begin.x)) / 2),
-                ((max(diameter.end.y, diameter.begin.y) - min(diameter.end.y, diameter.begin.y)) / 2))
-                , diameter.length / 2)
+fun circleByDiameter(diameter: Segment): Circle = TODO()
+
 
 /**
  * Прямая, заданная точкой point и углом наклона angle (в радианах) по отношению к оси X.
